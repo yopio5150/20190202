@@ -1,6 +1,13 @@
 (function () {
     'use strict';
-    let answers = [
+    const userNameInput = document.getElementById('user-name');
+    const assessmentButton = document.getElementById('assessment');
+    const resultDivided = document.getElementById('result-area');
+    const tweetDivided = document.getElementById('tweet-area');
+    assessmentButton.onclick = function() {
+        console.log('ボタンが押されました');
+    };
+    const answers = [
         '{userName}のいいところは声です。{userName}の特徴的な声は皆を惹きつけ、心に残ります。',
         '{userName}のいいところはまなざしです。{userName}に見つめられた人は、気になって仕方がないでしょう。',
         '{userName}のいいところは情熱です。{userName}の情熱に周りの人は感化されます。',
@@ -35,10 +42,16 @@
         const index = sumOfcharCode % answers.length;
         let result = answers[index];
 
-        result = result.replace(/\{userName\}/g, userName);
+        result = result.replace(/\{userName\}/g, userName); 
+        return result;
     }       
-
-    console.log(assessment('太郎'));
-    console.log(assessment('次郎'));
-    console.log(assessment('太郎'));
+//テストコード
+console.assert(
+    assesment('太郎') === '太郎のいいところは決断力です。太郎がする決断にいつも助けられる人がいます。'
+    '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。'
+);
+console.assert(
+    assessment('太郎') === assessment('太郎'),
+    '入力が同じ名前なら同じ診断結果を出力する処理が正しくありません。'
+);
 })();
